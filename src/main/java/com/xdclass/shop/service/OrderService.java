@@ -7,18 +7,15 @@ import com.alibaba.fastjson.JSON;
 import com.xdclass.shop.common.Constants;
 import com.xdclass.shop.common.OrderCouponDto;
 import com.xdclass.shop.common.Page;
-import com.xdclass.shop.controller.TestController;
 import com.xdclass.shop.model.*;
 import com.xdclass.shop.repository.CouponRepository;
 import com.xdclass.shop.repository.OrderItemRepository;
 import com.xdclass.shop.repository.OrderRepository;
 import com.xdclass.shop.repository.UserCouponRepository;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.remoting.exception.RemotingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,14 +80,14 @@ public class OrderService {
         userCoupon.setOrderId(order.getId());
         userCoupon.setStatus(1);
         userCouponRepository.saveAndFlush(userCoupon);
-        updateCouponCode(order.getId(),order.getUser().getId(),userCouponCode);
+        updateCouponCode(order.getId(), order.getUser().getId(), userCouponCode);
         return null;
     }
 
     //用户下单跟新coupon和order关联关系
-    private void updateCouponCode(int orderId,int userId,String couponCode){
-        OrderCouponDto dto = new OrderCouponDto(couponCode,orderId,userId);
-        Message message = new Message("TopicTest", "Tag1", "12345", dto.toString().getBytes());
+    private void updateCouponCode(int orderId, int userId, String couponCode) {
+        OrderCouponDto dto = new OrderCouponDto(couponCode, orderId, userId);
+        Message message = new Message("BenchmarkTest", "Tag1", "12345", dto.toString().getBytes());
         // 这里用到了这个mq的异步处理，类似ajax，可以得到发送到mq的情况，并做相应的处理
         //不过要注意的是这个是异步的
         try {
