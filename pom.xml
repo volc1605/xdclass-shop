@@ -19,7 +19,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mysql.version>5.1.38</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <druid.version>1.1.7</druid.version>
         <tomcat.version>7.0.84</tomcat.version>
         <guava.version>24.0-jre</guava.version>
