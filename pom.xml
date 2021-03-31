@@ -22,7 +22,7 @@
         <mysql.version>5.1.38</mysql.version>
         <druid.version>1.1.7</druid.version>
         <tomcat.version>7.0.84</tomcat.version>
-        <guava.version>24.0-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
     </properties>
 
     <dependencies>
